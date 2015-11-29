@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="stylesheets/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],displayMath: [["$$","$$"],["\[","\]"]],
+        processEscapes: true}});
+    </script>
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -34,8 +41,6 @@
           <h1>Humanaugmentedltr</h1>
           <p></p>
           <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/GentleZhu">GentleZhu</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
         
@@ -110,8 +115,8 @@ s.t. w^T(x_i-x_j)\geq1-\zeta_{ij}; \forall(i,j)\in O \\
 
 <p>We perform detailed analyses using CNN features(Convolutionary Neural Network) and compare only to the stronger original-only baseline due to its superiority over other features.
 </p><div>
-<img src="./img/vary_face.pdf" width="300px" alt="sometext">
-<img src="./img/vary_shoes.pdf" width="300px" alt="sometext">
+<img src="img/vary_face.pdf" width="300px">
+<img src="img/vary_shoes.pdf" width="300px">
 
 <p>Ranking accuracy comparing ours (CNN+Augmented) with the baseline (CNN+Original) for varying increments of augmented training data averaged over all attributes on (a) LFW10 and (b) Shoes-with-attributes (SWA).</p>
 
@@ -122,8 +127,8 @@ s.t. w^T(x_i-x_j)\geq1-\zeta_{ij}; \forall(i,j)\in O \\
 <a id="robustness-of-adding-augmented-training-data" class="anchor" href="#robustness-of-adding-augmented-training-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Robustness of adding augmented training data</h3>
 
 <p></p><div>
-<img src="./img/consistency_face.pdf" width="300px" alt="sometext">
-<img src="./img/consistency_shoes.pdf" width="300px" alt="sometext">
+<img src="./img/consistency_face.pdf" width="300px">
+<img src="./img/consistency_shoes.pdf" width="300px">
 
 <p>We vary the portion of original training pairs from 10% to 100% in increments of 10%, and randomly choose the training pairs in each trial.With our augmented data, the ranker consistently performs better than that using only the original training data across all number of original training pairs.</p>
 
