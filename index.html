@@ -4,10 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Humanaugmentedltr by GentleZhu</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],displayMath: [["$$","$$"],["\[","\]"]],
         processEscapes: true}});
@@ -25,17 +21,6 @@
 
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/GentleZhu/HumanAugmentedLTR">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/GentleZhu/HumanAugmentedLTR/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/GentleZhu/HumanAugmentedLTR/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
-
-    <div class="wrapper">
-
       <section>
         <div id="title">
           <h1>Humanaugmentedltr</h1>
@@ -47,18 +32,15 @@
 
 
 
-<h1>
-<a id="human-augmented-training-data-in-learning-to-rank" class="anchor" href="#human-augmented-training-data-in-learning-to-rank" aria-hidden="true"><span class="octicon octicon-link"></span></a>Human Augmented Training Data in Learning To Rank</h1>
+<h1>Human Augmented Training Data in Learning To Rank</h1>
 
-<h2>
-<a id="abstract" class="anchor" href="#abstract" aria-hidden="true"><span class="octicon octicon-link"></span></a>Abstract</h2>
+<h2>Abstract</h2>
 
 <hr>
 
 <p>Learning to rank methods and their applications such as relative attributes are extensively used in AI. Though there is a variety of learning to rank methods, those which use pairwise guidance are especially popular. However, pairwise learning to rank methods require a substantial amount of training for the learning algo- rithms to perform well. In this paper we explore how human local annotation can be used to augment existing training beyond the given training pairs. Our empirical results show the promise of such a direction is substantial.</p>
 
-<h2>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+<h2>Introduction</h2>
 
 <hr>
 
@@ -70,8 +52,7 @@
 
 <hr>
 
-<h2>
-<a id="approach" class="anchor" href="#approach" aria-hidden="true"><span class="octicon octicon-link"></span></a>Approach</h2>
+<h2>Approach</h2>
 
 <p>Step 1:Get users' judgement in two images regarding attribute strength.</p>
 
@@ -79,8 +60,7 @@
 
 <p>Step 3:Rank images via RankSVM with original training data and augmented data.</p>
 
-<h3>
-<a id="augmenting-constraints-in-ranksvm" class="anchor" href="#augmenting-constraints-in-ranksvm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Augmenting constraints in RankSVM</h3>
+<h3>Augmenting constraints in RankSVM</h3>
 
 <p>We now have a way to augment each original ordered training pair $(i,j)$ with synthetic ordered pairs  $(i,i^\prime)$ and  $(j^\prime,j)$.  This set of synthetic ordered pairs $O'={(i,i')}$ creates a new partial-order ranking constraint in the RankSVM formulation:
 [
@@ -99,19 +79,16 @@ s.t. w^T(x_i-x_j)\geq1-\zeta_{ij}; \forall(i,j)\in O \\
 
 <hr>
 
-<h2>
-<a id="experimental-result" class="anchor" href="#experimental-result" aria-hidden="true"><span class="octicon octicon-link"></span></a>Experimental Result</h2>
+<h2>Experimental Result</h2>
 
-<h3>
-<a id="datasets" class="anchor" href="#datasets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Datasets</h3>
+<h3>Datasets</h3>
 
 <ul>
 <li>LFW10, which is a subset of the Labeled Faces in the Wild dataset. It consists of 2000 human face images (1000 for training and 1000 for testing) with different poses, lighting conditions, and background clutter.</li>
 <li>Shoes-with-attributes (SWA), which is downloaded from like.com and consists of 14658 shoe images;</li>
 </ul>
 
-<h3>
-<a id="ranking-accuracy-with-augmented-training-data" class="anchor" href="#ranking-accuracy-with-augmented-training-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ranking accuracy with augmented training data</h3>
+<h3>Ranking accuracy with augmented training data</h3>
 
 <p>We perform detailed analyses using CNN features(Convolutionary Neural Network) and compare only to the stronger original-only baseline due to its superiority over other features.
 </p><div>
@@ -123,8 +100,7 @@ s.t. w^T(x_i-x_j)\geq1-\zeta_{ij}; \forall(i,j)\in O \\
 <p></p>
 </div>
 
-<h3>
-<a id="robustness-of-adding-augmented-training-data" class="anchor" href="#robustness-of-adding-augmented-training-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Robustness of adding augmented training data</h3>
+<h3>Robustness of adding augmented training data</h3>
 
 <p></p><div>
 <img src="./img/consistency_face.pdf" width="300px">
@@ -135,8 +111,7 @@ s.t. w^T(x_i-x_j)\geq1-\zeta_{ij}; \forall(i,j)\in O \\
 <h2></h2>
 </div>
 
-<h2>
-<a id="claim" class="anchor" href="#claim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Claim</h2>
+<h2>Claim</h2>
 
 <p>Given human's rantionale, we demonstrate one way to teach machine intuitively. We plan to add more dataset to prove the correctness of idea:human augmented training data. And we would like to understand why this phenomenon exists.</p>
       </section>
