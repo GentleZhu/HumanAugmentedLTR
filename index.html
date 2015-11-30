@@ -29,15 +29,9 @@
 <center><h1>Human Augmented Training Data in Learning To Rank</h1></center>
 
 <center><h2>Abstract</h2></center>
-
-<hr>
-
 <p>Learning to rank methods and their applications such as relative attributes are extensively used in AI. Though there is a variety of learning to rank methods, those which use pairwise guidance are especially popular. However, pairwise learning to rank methods require a substantial amount of training for the learning algo- rithms to perform well. In this paper we explore how human local annotation can be used to augment existing training beyond the given training pairs. Our empirical results show the promise of such a direction is substantial.</p>
-
-<center><h2>Introduction</h2></center>
-
 <hr>
-
+<center><h2>Introduction</h2></center>
 <p>Existing pairwise learning to rank rely on high quality training pairs and substantial training samples. It has been widely shown and observed pragmatically in many fields that the more training data available the more useful the ranking function. Conversely, if inconsistent training data is provided performance can be greatly impacted. Our core idea is to use human feedback in the form of localized annotations to generate more training data.The form of feedback is for the human expert to outline what parts of the object are the reason for the ranking. 
 </p>
 <center>
@@ -46,7 +40,6 @@
 </div>
 </center>
 <p>(a) Given training images A and B, ordered in strength as $A&gt;B$ for attribute "eyes open", (b) we ask a human to annotate the regions most relevant to the attribute. We then synthesize new images $A^{'}_{B}$ and $B^{'}_{A}$ by swapping and blending in the annotated regions.(c-d) The synthesized images can be used to generate new augmented constraints.</p>
-
 <hr>
 
 <center><h2>Approach</h2></center>
@@ -96,10 +89,9 @@ s.t. w^T(x_i-x_j)\geq1-\zeta_{ij}; \forall(i,j)\in O \\
 <img src="img/vary_shoes.jpg" width="400px">
 
 <p>Ranking accuracy comparing ours with the baseline for varying increments of augmented training data averaged over all attributes on (a) LFW10 and (b) Shoes-with-attributes (SWA).</p>
-
-<p></p>
 </div>
 </center>
+<hr>
 
 <h3>Robustness of adding augmented training data</h3>
 
@@ -111,12 +103,10 @@ s.t. w^T(x_i-x_j)\geq1-\zeta_{ij}; \forall(i,j)\in O \\
 </div>
 </center>
 <p>We vary the portion of original training pairs from 10% to 100% in increments of 10%, and randomly choose the training pairs in each trial.With our augmented data, the ranker consistently performs better than that using only the original training data across all number of original training pairs.</p>
-
-
 <hr>
 <center><h2>Claim</h2></center>
 
-<p>Given human's rantionale, we demonstrate one way to teach machine intuitively. We plan to add more dataset to prove the correctness of idea:human augmented training data. And we would like to understand why this phenomenon exists.</p>
+<p>Given human's rantionale, we demonstrate one way to teach machine rank images intuitively with localized annotation. We plan to add more dataset to prove the correctness of idea:human augmented training data. And we would like to understand why this phenomenon exists.</p>
       </section>
 
     </div>
