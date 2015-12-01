@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Humanaugmentedltr by GentleZhu</title>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],displayMath: [["$$","$$"],["\[","\]"]],
+        processEscapes: true}});
+    </script>
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+        
+
+
+
+<center><h1>Human Augmented Training Data in Learning To Rank</h1></center>
+
+<center><h2>Abstract</h2></center>
+
+<hr>
+
+<p>Learning to rank methods and their applications such as relative attributes are extensively used in AI. Though there is a variety of learning to rank methods, those which use pairwise guidance are especially popular. However, pairwise learning to rank methods require a substantial amount of training for the learning algo- rithms to perform well. In this paper we explore how human local annotation can be used to augment existing training beyond the given training pairs. Our empirical results show the promise of such a direction is substantial.</p>
+
+<center><h2>Introduction</h2></center>
+
+<hr>
+
+<p>Existing pairwise learning to rank rely on high quality training pairs and substantial training samples. It has been widely shown and observed pragmatically in many fields that the more training data available the more useful the ranking function. Conversely, if inconsistent training data is provided performance can be greatly impacted. Our core idea is to use human feedback in the form of localized annotations to generate more training data.The form of feedback is for the human expert to outline what parts of the object are the reason for the ranking. 
+</p>
+<center>
+<div>
+    <img src="./img/approach.jpg" width="700px" alt="sometext">
+</div>
+</center>
+<p>(a) Given training images A and B, ordered in strength as $A&gt;B$ for attribute "eyes open", (b) we ask a human to annotate the regions most relevant to the attribute. We then synthesize new images $A^{'}_{B}$ and $B^{'}_{A}$ by swapping and blending in the annotated regions.(c-d) The synthesized images can be used to generate new augmented constraints.</p>
+
+<hr>
+
+<center><h2>Approach</h2></center>
+
+<p>Step 1:Get users' judgement in two images regarding attribute strength.</p>
+
+<p>Step 2:Generate augmented training data.</p>
+
+<p>Step 3:Rank images via RankSVM with original training data and augmented data.</p>
+
+<center><h3>Augmenting constraints in RankSVM</h3></center>
+
+<p>We now have a way to augment each original ordered training pair $(i,j)$ with synthetic ordered pairs  $(i,i^\prime)$ and  $(j^\prime,j)$.  This set of synthetic ordered pairs $O'={(i,i')}$ creates a new partial-order ranking constraint in the RankSVM formulation:
+[
+\begin{align}
+\min ~~\frac{1}{2}||w||^2+C(\Sigma\zeta_{ij}+\Sigma\gamma_{ij}+\Sigma\eta_{ij}) \\ 
+s.t. w^T(x_i-x_j)\geq1-\zeta_{ij}; \forall(i,j)\in O \\
+*w^T(x_i-x_{i'})\geq \mu(1-\eta_{ii'}); \forall(i,i')\in O^\prime \\
+|{w^T(x_i-x_j)}|\leq\gamma_{ij}; \forall(i,j)\in S \\
+\zeta_{ij}\geq0; \eta_{ii'}\geq0; \gamma_{ij}\geq0,
+\end{align}
+]
+</p>
+
+<p>
+* are the constraints generated from the synthetic pairs that enforce a new margin $\mu \ge 0$, which is parameter that reflects our confidence in the synthetic augmented data.  When $\mu=1$, the augmented training pairs are weighted equally as the original data pairs, and when $\mu1$, we give them less or more weight compared to the original pairs, respectively.  In practice, we set $\mu$ via cross validation.</li>
+</p>
+
+<hr>
+
+<center><h2>Experimental Result</h2></center>
+
+<h3>Datasets</h3>
+
+<ul>
+<li>LFW10, which is a subset of the Labeled Faces in the Wild dataset. It consists of 2000 human face images (1000 for training and 1000 for testing) with different poses, lighting conditions, and background clutter.</li>
+<li>Shoes-with-attributes (SWA), which is downloaded from like.com and consists of 14658 shoe images;</li>
+</ul>
+
+<h3>Ranking accuracy with augmented training data</h3>
+
+<p>We perform detailed analyses using CNN features(Convolutionary Neural Network) and compare only to the stronger original-only baseline due to its superiority over other features.
+</p>
+<center>
+<div>
+<img src="img/vary_face.jpg" width="400px">
+<img src="img/vary_shoes.jpg" width="400px">
+
+<p>Ranking accuracy comparing ours with the baseline for varying increments of augmented training data averaged over all attributes on (a) LFW10 and (b) Shoes-with-attributes (SWA).</p>
+
+<p></p>
+</div>
+</center>
+
+<h3>Robustness of adding augmented training data</h3>
+
+<p></p>
+<center>
+<div>
+<img src="./img/consistency_face.jpg" width="400px">
+<img src="./img/consistency_shoes.jpg" width="400px">
+</div>
+</center>
+<p>We vary the portion of original training pairs from 10% to 100% in increments of 10%, and randomly choose the training pairs in each trial.With our augmented data, the ranker consistently performs better than that using only the original training data across all number of original training pairs.</p>
+
+
+<hr>
+<center><h2>Claim</h2></center>
+
+<p>Given human's rantionale, we demonstrate one way to teach machine intuitively. We plan to add more dataset to prove the correctness of idea:human augmented training data. And we would like to understand why this phenomenon exists.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
